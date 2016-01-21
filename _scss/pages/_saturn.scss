@@ -1,0 +1,4 @@
+.page[class*="saturn"] {
+  color: #333;
+  background-color: get($config, colors, saturn);
+}

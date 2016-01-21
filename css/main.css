@@ -1,0 +1,345 @@
+/*---------------------------------------------------
+ * Functions
+ *---------------------------------------------------
+ */
+/*---------------------------------------------------
+ * Config
+ *---------------------------------------------------
+ */
+/*****************************************************************************/
+/*
+/* Common
+/*
+/*****************************************************************************/
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0; }
+
+*,
+*:before,
+*:after {
+  position: relative;
+  box-sizing: border-box; }
+
+html {
+  font-size: 62.5%; }
+
+html, body {
+  height: 100%; }
+
+body {
+  font: 1.618rem Helvetica, Arial, sans-serif;
+  line-height: 1.618;
+  background-color: #1c2b35;
+  transition-property: padding;
+  transition-duration: 0.4s;
+  transition-timing-function: cubic-bezier(0.87, -0.05, 0.19, 1.44); }
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%; }
+
+h1 {
+  margin-bottom: 1em; }
+
+p {
+  margin: 1em 0; }
+
+a {
+  color: #00a; }
+
+a:hover {
+  color: #000; }
+
+a:visited {
+  color: #a0a; }
+
+/*****************************************************************************/
+/*
+/* Home
+/*
+/*****************************************************************************/
+.posts {
+  list-style-type: none;
+  margin-bottom: 2em; }
+
+.posts li {
+  line-height: 1.75em; }
+
+.posts span {
+  color: white;
+  font-family: Monaco, "Courier New", monospace;
+  font-size: 80%; }
+
+/*****************************************************************************/
+/*
+/* Site
+/*
+/*****************************************************************************/
+.header a {
+  font-weight: bold;
+  text-decoration: none; }
+
+.header {
+  padding: 2rem;
+  z-index: 10;
+  transition-property: padding, margin, box-shadow;
+  transition-duration: 0.4s;
+  transition-timing-function: cubic-bezier(0.87, -0.05, 0.19, 1.44); }
+  .header.is-sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 2rem;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.18);
+    z-index: 10; }
+
+body:not(.is-zoomed-out) .header {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.15); }
+
+body:not(.is-zoomed-out) .title a {
+  color: #333; }
+
+body.is-zoomed-out .title a {
+  color: white; }
+
+.meta {
+  color: #aaa; }
+
+.footer {
+  font-size: 80%;
+  color: #666;
+  border-top: 4px solid #eee;
+  margin-top: 2em;
+  overflow: hidden; }
+
+.footer .contact {
+  float: left;
+  margin-right: 3em; }
+
+.footer .contact a {
+  color: #8085C1; }
+
+.footer .rss {
+  margin-top: 1.1em;
+  margin-right: -.2em;
+  float: right; }
+
+.footer .rss img {
+  border: 0; }
+
+/*****************************************************************************/
+/*
+/* Posts
+/*
+/*****************************************************************************/
+/* standard */
+.post pre {
+  border: 1px solid #ddd;
+  background-color: #eef;
+  padding: 0 .4em; }
+
+.post ul, .post ol {
+  margin-left: 1.35em; }
+
+.post code {
+  border: 1px solid #ddd;
+  background-color: #eef;
+  padding: 0 .2em; }
+
+.post pre code {
+  border: none; }
+
+/* terminal */
+.post pre.terminal {
+  border: 1px solid #000;
+  background-color: #333;
+  color: #FFF; }
+
+.post pre.terminal code {
+  background-color: #333; }
+
+.u-zui {
+  transition-property: padding;
+  transition-duration: 0.4s;
+  transition-timing-function: cubic-bezier(0.87, -0.05, 0.19, 1.44); }
+  .u-zui:not(.is-zoomed-out) {
+    padding: 0;
+    padding-top: 6.5rem;
+    overflow-x: hidden; }
+    .u-zui:not(.is-zoomed-out) .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      z-index: 100; }
+  .u-zui__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    font-size: 2rem;
+    line-height: 1.3; }
+
+.c-zui-nav {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+  margin-bottom: 4rem; }
+  .c-zui-nav__item {
+    -webkit-flex: 40% 0 0;
+        -ms-flex: 40% 0 0;
+            flex: 40% 0 0;
+    max-height: 25vh;
+    margin: 2rem;
+    margin-bottom: 0;
+    /**
+     * To make the ZUIcons scale in a proper direction, we
+     * need to change the transform-origin point a bit.
+     * If the ZUIcon is in the left row, we'll scale
+     * it from the top left, and top right if the
+     * ZUIcon is on the right side.
+     */ }
+    .c-zui-nav__item:nth-child(odd) {
+      margin-right: 0;
+      -webkit-transform-origin: top left;
+              transform-origin: top left; }
+    .c-zui-nav__item:nth-child(even) {
+      margin-left: 0;
+      -webkit-transform-origin: top right;
+              transform-origin: top right; }
+
+/**
+ * When focusing in on a page in the ZUI Navigation,
+ * we also need to scale down and hide the other
+ * ZUIcons that currently aren't used. If not,
+ * we risk messing up the layout.
+ */
+body:not(.is-zoomed-out) .c-zui-nav__item:not(.in-focus) {
+  -webkit-flex: 0% 0 0;
+      -ms-flex: 0% 0 0;
+          flex: 0% 0 0;
+  -webkit-flex-basis: 0%;
+      -ms-flex-preferred-size: 0%;
+          flex-basis: 0%;
+  margin: 0;
+  max-height: 0;
+  opacity: 0;
+  z-index: -1; }
+
+.c-zuicon {
+  display: block;
+  text-decoration: none;
+  color: #333;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  transition-property: -webkit-flex, -webkit-flex-basis, margin, max-height, max-width opacity -webkit-transform;
+  transition-property: -ms-flex, -ms-flex-preferred-size, margin, max-height, max-width opacity transform;
+  transition-property: flex, flex-basis, margin, max-height, max-width opacity transform;
+  transition-duration: 0.4s;
+  transition-timing-function: cubic-bezier(0.87, -0.05, 0.19, 1.44);
+  /*
+  |----------------------------------------------------------------------
+  | Default states for content within the ZUIcon
+  |----------------------------------------------------------------------
+  */
+  /*
+  |----------------------------------------------------------------------
+  | Handling zooming states
+  |----------------------------------------------------------------------
+  */ }
+  .c-zuicon:not(.in-focus):hover {
+    -webkit-transform: translateY(-5px);
+            transform: translateY(-5px);
+    cursor: pointer; }
+  .c-zuicon:not(.in-focus):active {
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none; }
+  .c-zuicon__title {
+    padding: 1.5rem;
+    width: 100%;
+    z-index: 1;
+    color: #333;
+    font-size: 1.618rem;
+    font-family: "Ubuntu","Georgia", serif;
+    background-color: white; }
+  .c-zuicon__preview {
+    width: 100%;
+    background-color: ghostwhite; }
+  .c-zuicon .page {
+    transition-property: font-size;
+    transition-duration: 0.4s;
+    transition-timing-function: cubic-bezier(0.87, -0.05, 0.19, 1.44); }
+    @media (max-width: 46.24em) {
+      .c-zuicon .page {
+        padding: 2rem;
+        font-size: 50%; } }
+  .c-zuicon.in-focus {
+    -webkit-flex: 100% 0 0;
+        -ms-flex: 100% 0 0;
+            flex: 100% 0 0;
+    -webkit-flex-basis: 100%;
+        -ms-flex-preferred-size: 100%;
+            flex-basis: 100%;
+    max-height: 100vh;
+    margin: 0;
+    z-index: 10;
+    overflow: visible; }
+    .c-zuicon.in-focus .page {
+      font-size: 100%; }
+  .c-zuicon:not(.in-focus):active {
+    -webkit-transform: scale(1.3);
+            transform: scale(1.3);
+    box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.12);
+    z-index: 10; }
+
+.page {
+  padding: 2rem; }
+  .page h1 {
+    font-size: 125%; }
+
+.page[class*="earth"] {
+  color: white;
+  background-color: #3180b4; }
+
+.page[class*="mars"] {
+  color: white;
+  background-color: #e15937; }
+
+.page[class*="jupiter"] {
+  font-family: "Georgia", serif;
+  color: white;
+  background-color: #f08247; }
+
+.page[class*="saturn"] {
+  color: #333;
+  background-color: #eebe59; }
+
+.page[class*="mercury"] {
+  color: #1c2b35;
+  background-color: #edbf64; }
+
+.page[class*="venus"] {
+  color: white;
+  background-color: #cd902d; }
+
+.page[class*="neptune"] {
+  color: white;
+  background-color: #647fb4; }
+
+.page[class*="uranus"] {
+  color: #444;
+  background-color: #bdebef; }

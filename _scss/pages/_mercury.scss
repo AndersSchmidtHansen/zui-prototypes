@@ -1,0 +1,4 @@
+.page[class*="mercury"] {
+  color: get($config, colors, space);
+  background-color: get($config, colors, mercury);
+}

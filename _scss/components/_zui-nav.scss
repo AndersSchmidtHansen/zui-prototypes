@@ -1,0 +1,48 @@
+.c-zui-nav {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin-bottom: 4rem;
+
+  &__item {
+    flex: 40% 0 0;
+    max-height: 25vh;
+    margin: 2rem;
+    margin-bottom: 0;
+    
+    /**
+     * To make the ZUIcons scale in a proper direction, we
+     * need to change the transform-origin point a bit.
+     * If the ZUIcon is in the left row, we'll scale
+     * it from the top left, and top right if the
+     * ZUIcon is on the right side.
+     */
+    &:nth-child(odd) {
+      margin-right: 0;
+      transform-origin: top left;
+    }
+
+    &:nth-child(even) {
+      margin-left: 0;
+      transform-origin: top right;
+    }
+
+  }
+}
+
+/**
+ * When focusing in on a page in the ZUI Navigation,
+ * we also need to scale down and hide the other
+ * ZUIcons that currently aren't used. If not,
+ * we risk messing up the layout.
+ */
+body:not(.is-zoomed-out) {
+  .c-zui-nav__item:not(.in-focus) {
+    flex: 0% 0 0;
+    flex-basis: 0%;
+    margin: 0;
+    max-height: 0;
+    opacity: 0;
+    z-index: -1;
+  }
+}

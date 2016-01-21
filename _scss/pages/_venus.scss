@@ -1,0 +1,4 @@
+.page[class*="venus"] {
+  color: white;
+  background-color: get($config, colors, venus);
+}

@@ -1,0 +1,12 @@
+<nav class="c-zui-nav">
+  
+  {% for page in site.pages %}
+    {% if page.layout == 'page' %}
+      <div data-href="{{ page.permalink }} #content" class="c-zuicon c-zui-nav__item">
+        <div class="c-zuicon__title">{{ page.headline }}</div>
+        <div class="c-zuicon__preview"></div>
+      </div>
+    {% endif %}
+  {% endfor %}
+
+</nav>
