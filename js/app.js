@@ -1,5 +1,9 @@
 $(function(){
 
+  var $document = $(document)
+  var $window = $(window)
+  var $body = $('body')
+
   var $zuicon = $('.c-zuicon')
   var $zuiClose = $('.u-zui__close')
 
@@ -17,7 +21,7 @@ $(function(){
   | lazyload any media that lives within the content fragments
   | after the load has completed.
   */
-  $($zuicon).each(function(){
+  $zuicon.each(function(){
     $(this).find('.c-zuicon__preview').load( $(this).data('href') )
   })
 
@@ -27,35 +31,35 @@ $(function(){
   |----------------------------------------------------------------------
   */
   var handleZoomingOut = function() {
-    $($zuiClose).fadeOut()
-    $('body').addClass('is-zoomed-out')
+    $zuiClose.fadeOut()
+    $body.addClass('is-zoomed-out')
     $('.c-zuicon.in-focus').removeClass('in-focus')    
   }
 
   var handleZoomingIn = function(target) {
-    $('body').removeClass('is-zoomed-out')
+    $body.removeClass('is-zoomed-out')
     $(target).addClass('in-focus')
-    $($zuiClose).fadeIn()
+    $zuiClose.fadeIn()
 
     // If we don't scroll the page to the top when zooming in
     // we can end up with opening a page that is scrolled
     // down to the place the user stopped scrolling.
-    $(window).scrollTop(0)
+    $window.scrollTop(0)
   }
 
   // When the user selects a ZUIcon, zoom in on its
   // content and scale it up to full-size.
-  $($zuicon).on('click', function(){
+  $zuicon.on('click', function(){
     handleZoomingIn($(this))
   })
 
   // Handle zooming out when the user hits the close button.
-  $($zuiClose).on('click', function(){
+  $zuiClose.on('click', function(){
     handleZoomingOut()
   })
 
   // For desktops, allow 'esc' key to trigger zooming out.
-  $(document).on('keyup', function(event){
+  $document.on('keyup', function(event){
     if (event.keyCode == 27) {
       handleZoomingOut()
     }
