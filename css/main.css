@@ -29,7 +29,7 @@ html, body {
   height: 100%; }
 
 body {
-  font: 1.618rem Helvetica, Arial, sans-serif;
+  font: 1.618rem 'Open Sans', Helvetica, Arial, sans-serif;
   line-height: 1.618;
   background-color: #1c2b35;
   transition-property: padding;
@@ -242,7 +242,6 @@ body:not(.is-zoomed-out) .c-zui-nav__item:not(.in-focus) {
   text-decoration: none;
   color: #333;
   background-color: white;
-  border-radius: 8px;
   overflow: hidden;
   transition-property: -webkit-flex, -webkit-flex-basis, margin, max-height, max-width opacity -webkit-transform;
   transition-property: -ms-flex, -ms-flex-preferred-size, margin, max-height, max-width opacity transform;
@@ -274,8 +273,8 @@ body:not(.is-zoomed-out) .c-zui-nav__item:not(.in-focus) {
     z-index: 1;
     color: #333;
     font-size: 1.618rem;
-    font-family: "Ubuntu","Georgia", serif;
-    background-color: white; }
+    background-color: white;
+    font-weight: 600; }
   .c-zuicon__preview {
     width: 100%;
     background-color: ghostwhite; }
@@ -307,9 +306,14 @@ body:not(.is-zoomed-out) .c-zui-nav__item:not(.in-focus) {
     z-index: 10; }
 
 .page {
-  padding: 2rem; }
+  padding: 4rem; }
   .page h1 {
     font-size: 125%; }
+  .page ul {
+    margin-left: 1.75rem;
+    margin-bottom: 3rem; }
+  .page a {
+    color: white; }
 
 .page[class*="earth"] {
   color: white;
@@ -320,7 +324,6 @@ body:not(.is-zoomed-out) .c-zui-nav__item:not(.in-focus) {
   background-color: #e15937; }
 
 .page[class*="jupiter"] {
-  font-family: "Georgia", serif;
   color: white;
   background-color: #f08247; }
 
